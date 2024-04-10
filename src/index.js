@@ -10,12 +10,16 @@ const renderRegistrationForm = () => {
         <label for="inputEmail">Email</label>
         <input type="text" class="form-control" id="inputEmail" placeholder="Введите email" name="email" required>
       </div>
-      <input type="submit" value="Submit" class="btn btn-primary">
+      <input type="submit" value="Submit" class="btn btn-primary" disabled>
     </form>`;
 };
 
-const validateName = (name) => name.trim() !== '';
+const validateName = (name) => (name.trim() !== '' ? [] : ['name can\'t be blank']);
 
-const validateEmail = (email) => /\w+@\w+/.test(email);
+const validateEmail = (email) => (/\w+@\w+/.test(email) ? [] : ['invalid email']);
 
-export { renderRegistrationForm, validateName, validateEmail };
+const validateField = (field, data) => (field === 'name' ? validateName(data) : validateEmail(data));
+
+export {
+  renderRegistrationForm, validateField,
+};
