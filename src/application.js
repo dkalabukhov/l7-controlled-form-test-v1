@@ -32,7 +32,7 @@ function app() {
       .catch((error) => console.log(error));
   });
 
-  const hasErrors = (state) => {
+  const hasErrors = () => {
     const values = Object.values(state.errors);
     const errorsCount = values.reduce((acc, arr) => acc + arr.length, 0);
     return errorsCount !== 0;
@@ -50,7 +50,7 @@ function app() {
       input.classList.add('is-valid');
     }
 
-    submitButton.disabled = hasErrors(state);
+    submitButton.disabled = hasErrors();
   });
 
   const form = document.querySelector('#registrationForm');
